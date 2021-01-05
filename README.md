@@ -51,9 +51,9 @@ local UserInputService = game:GetService("UserInputService")
 local Network = require("Network")
 
 UserInputService.InputBegan:Connect(function(input)
-	if input.UserInputType == Enum.UserInputType.Keyboard then
-		Network.fireEvent("keyPressedEvent", input.KeyCode)
-	end
+    if input.UserInputType == Enum.UserInputType.Keyboard then
+        Network.fireEvent("keyPressedEvent", input.KeyCode)
+    end
 end)
 ```
 Server
@@ -61,6 +61,6 @@ Server
 local Network = require("Network")
 
 Network.hookEvent("keyPressedEvent", function(player, key)
-	print(player.Name .. " pressed " .. key)
+    print(player.Name .. " pressed " .. key)
 end)
 ```
