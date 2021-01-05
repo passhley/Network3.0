@@ -1,7 +1,7 @@
 # Network 3.0
 Easily allows you to create and manage RemoteEvents and RemoteFunctions
 
-## Api
+## API
 ```lua
 -- Add's a new RemoteEvent to the network's registry
 -- [SERVER-ONLY]
@@ -42,4 +42,25 @@ Network.FireAllClientsExcept(eventName, clientExcept, ...)
 -- [CLIENT-ONLY]
 Network.invokeFunction(functionName, ...)
 Network.InvokeFunction(functionName, ...)
+```
+
+## Example
+Client
+```lua
+local UserInputService = game:GetService("UserInputService")
+local Network = require("Network")
+
+UserInputService.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.Keyboard then
+		Network.fireEvent("keyPressedEvent", input.KeyCode)
+	end
+end)
+```
+Server
+```lua
+local Network = require("Network")
+
+Network.hookEvent("keyPressedEvent", function(player, key)
+	print(player.Name .. " pressed " .. key)
+end)
 ```
