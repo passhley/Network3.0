@@ -60,6 +60,7 @@ Server
 ```lua
 local Network = require("Network")
 
+Network.registerEvent("keyPressedEvent")
 Network.hookEvent("keyPressedEvent", function(player, key)
     print(player.Name .. " pressed " .. key)
 end)
